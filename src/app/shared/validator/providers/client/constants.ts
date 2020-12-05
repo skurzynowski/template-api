@@ -1,0 +1,1 @@
+export const VALIDATOR_CLIENT_TOKEN = Symbol('VALIDATOR_CLIENT');

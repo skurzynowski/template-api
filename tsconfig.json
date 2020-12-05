@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "esnext",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "importHelpers": true,
+    "paths": {
+      "@shared/*": ["src/app/shared/*"],
+      "@init/*": ["src/app/init/*"],
+      "@integration-tests/*": ["src/integration-tests/*"],
+      "@template/*": ["src/app/domain/template/*"],
+      "@auth/*": ["src/app/domain/auth/*"],
+      "@health/*": ["src/app/domain/health/*"]
+    }
+  }
+}

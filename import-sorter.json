@@ -1,0 +1,25 @@
+{
+  "importSorter.importStringConfiguration.hasSemicolon": true,
+  "importSorter.importStringConfiguration.tabSize": 2,
+  "importSorter.importStringConfiguration.trailingComma": "multiLine",
+  "importSorter.sortConfiguration.customOrderingRules.rules": [
+    {
+      "type": "importMember",
+      "regex": "^$",
+      "orderLevel": 10
+    },
+    {
+      "regex": "^(@shared/|@template/|@integration-tests/|@init/|@health/|@auth/)",
+      "orderLevel": 21
+    },
+    {
+      "regex": "^[.]",
+      "orderLevel": 22
+    }
+  ],
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "newLineEachExpressionAfterCountLimitExceptIfOnlyOne",
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 120,
+  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.sortConfiguration.removeUnusedImports": true,
+  "importSorter.sortConfiguration.removeUnusedDefaultImports": true
+}

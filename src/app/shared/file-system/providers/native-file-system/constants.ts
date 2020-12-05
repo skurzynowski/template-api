@@ -1,0 +1,1 @@
+export const NATIVE_FILE_SYSTEM_TOKEN = Symbol('FILE_SYSTEM_TOKEN');
