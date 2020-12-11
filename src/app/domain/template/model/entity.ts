@@ -41,6 +41,10 @@ export class Template {
   @Column({ type: 'text' })
   public fileType: string;
 
+  @Expose()
+  @Column({ type: 'bytea' })
+  public file: Buffer;
+
   @BeforeInsert()
   @BeforeUpdate()
   protected validate(): Promise<void> {

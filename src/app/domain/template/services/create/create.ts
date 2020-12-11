@@ -18,12 +18,12 @@ export class TemplateCreateService {
     private readonly loggerService: LoggerService,
   ) {}
 
-  public async createOne(params: CreateOneTemplateParams): Promise<Template> {
+  public async createOne(params: CreateOneTemplateParams): Promise<Omit<Template, 'file'>> {
     const { templateData } = params;
 
     const templateEntity = this.templateRepository.create({ ...templateData });
 
-    const template = await this.templateRepository.save(templateEntity);
+    const { file, ...template } = await this.templateRepository.save(templateEntity);
 
     this.loggerService.info('Template created.', {
       id: template.id,

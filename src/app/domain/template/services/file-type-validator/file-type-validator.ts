@@ -13,7 +13,7 @@ export class TemplateFileTypeValidatorService {
       throw new InvalidFileTypeException();
     }
 
-    const type = fileType.toLowerCase();
+    const type = fileType.toLowerCase().split('.').reverse().shift();
 
     if (type === 'pptx') {
       return 'PPTX';

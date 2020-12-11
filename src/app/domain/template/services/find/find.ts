@@ -30,4 +30,8 @@ export class TemplateFindService {
   public async findMany(): Promise<Template[]> {
     return this.templateRepository.find();
   }
+
+  public async findManyOnlyInfo(): Promise<Template[]> {
+    return this.templateRepository.find({ select: ['fileType', 'id', 'createdAt', 'updatedAt'] });
+  }
 }

@@ -17,6 +17,10 @@ export async function run(connection: Connection): Promise<void> {
   });
 }
 
+export async function show(connection: Connection): Promise<void> {
+  await connection.showMigrations();
+}
+
 export async function revert(connection: Connection): Promise<void> {
   const migrationExecutor = new MigrationExecutor(connection);
 
@@ -32,6 +36,7 @@ export async function revert(connection: Connection): Promise<void> {
 export enum MigrationCommand {
   RUN = 'RUN',
   REVERT = 'REVERT',
+  SHOW = 'SHOW',
 }
 
 type CommandHandler = (connection: Connection) => Promise<void>;

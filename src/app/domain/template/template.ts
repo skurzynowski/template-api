@@ -12,16 +12,27 @@ import { TemplateCreateService } from './services/create/create';
 import { TemplateFileTypeValidatorService } from './services/file-type-validator/file-type-validator';
 import { TemplateFindService } from './services/find/find';
 import { TemplateRemoveService } from './services/remove/remove';
+import { TemplateTransformController } from './api/controllers/transform/transform';
+import { TemplateTransformService } from './services/transform/transform';
+import { FileSystemService } from '@shared/file-system/services/main/main';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Template]), AuthModule],
+  imports: [TypeOrmModule.forFeature([Template]), AuthModule, FileSystemService],
   controllers: [
     TemplateCreateOneController,
     TemplateGetManyController,
     TemplateGetOneController,
     TemplateRemoveOneController,
+    TemplateTransformController,
   ],
-  providers: [TemplateFindService, TemplateCreateService, TemplateRemoveService, TemplateFileTypeValidatorService],
-  exports: [TypeOrmModule, TemplateFindService, TemplateCreateService, TemplateRemoveService],
+  providers: [
+    TemplateFindService,
+    TemplateCreateService,
+    TemplateRemoveService,
+    TemplateFileTypeValidatorService,
+    TemplateTransformService,
+    FileSystemService
+  ],
+  exports: [TypeOrmModule, TemplateFindService, TemplateCreateService, TemplateRemoveService, TemplateTransformService],
 })
 export class TemplateModule {}

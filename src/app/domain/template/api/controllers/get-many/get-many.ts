@@ -24,7 +24,7 @@ export class TemplateGetManyController {
   @HttpCode(HttpStatus.OK)
   @Get()
   public async handle(): Promise<GetManyTemplatesResponsePayloadDTO> {
-    const templates = await this.templateFindService.findMany();
+    const templates = await this.templateFindService.findManyOnlyInfo();
 
     return {
       templates,

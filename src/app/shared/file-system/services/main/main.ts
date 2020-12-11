@@ -5,6 +5,7 @@ import { ENV_SYNTAX_PARSER_TOKEN } from '@shared/file-system/providers/env-synta
 import { EnvSyntaxParser } from '@shared/file-system/providers/env-syntax-parser/interfaces/env-syntax-parser';
 import { NATIVE_FILE_SYSTEM_TOKEN } from '@shared/file-system/providers/native-file-system/constants';
 import { NativeFileSystem } from '@shared/file-system/providers/native-file-system/interfaces/native-file-system';
+import { promises as fsPromised } from 'fs';
 
 @Injectable()
 export class FileSystemService {
@@ -29,5 +30,21 @@ export class FileSystemService {
     const packageContentBuffer = await this.nativeFileSystem.readFile(packageFilePath);
 
     return JSON.parse(packageContentBuffer.toString());
+  }
+
+  public async saveFile(fullName: string, content: Buffer): Promise<void> {
+    await fsPromised.writeFile(fullName, content);
+  }
+
+  public async readFile(fullName: string): Promise<Buffer> {
+    return await fsPromised.readFile(fullName);
+  }
+
+  public async deleteFile(fullName: string): Promise<void> {
+    return await fsPromised.unlink(fullName);
+  }
+
+  public async readDir(dir: string): Promise<string[]> {
+    return await fsPromised.readdir(dir);
   }
 }

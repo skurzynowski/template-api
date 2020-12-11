@@ -9,3 +9,9 @@ export const ApiFileTypeProperty = createApiProperty({
   type: String,
   example: 'PPTX',
 });
+
+export const ApiTemplatePropsTypeProperty = createApiProperty({
+  description: 'Values to fill template',
+  type: Object,
+  example: {},
+});

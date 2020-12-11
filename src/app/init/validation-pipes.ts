@@ -12,7 +12,7 @@ export const initValidationPipes = (app: INestApplication): INestApplication => 
       transform: true,
       whitelist: true,
       forbidNonWhitelisted: true,
-      forbidUnknownValues: true,
+      forbidUnknownValues: false,
     }),
   );
 
