@@ -62,11 +62,15 @@ export class TemplateTransformService {
     const removeOriginal = `rm /tmp/${template.id}/${template.id}.${template.fileType}`
     await promisedExec(removeOriginal);
 
+    try{
     //fill template
     if(template.fileType === "PPTX"){
       await this.renderPttx(template, params);
     }else{
       await this.renderDocx(template, params);
+    }
+    }catch(e){
+      console.log(e);
     }
 
     //zip file
@@ -78,31 +82,27 @@ export class TemplateTransformService {
     const zippedFile = `/tmp/${template.id}/${template.id}.${template.fileType}`;
     template.file = await this.fileSystemService.readFile(zippedFile);
 
-    await this.cleanUpFiles();
+    await this.cleanUpFiles(template.id);
 
     return template;
   }
 
-
-    public async renderFile(fileName : string, params: Record<string, any>, cleanUpCallback : () => Promise<void>): Promise<void>{
-
-     const file = await readFile(fileName);
+    public replaceTagsInstrings(content:string):string{
      const openTag = /&lt;/g
      const closeTag = /&gt;/g
 
-     const preparedFile = file.toString().replace(openTag, "<").replace(closeTag, ">");
+     return content.replace(openTag, "<").replace(closeTag, ">");
+    }  
 
-     try{
+
+    public async renderFile(fileName : string, params: Record<string, any> ): Promise<void>{
+       const file = await readFile(fileName);
+       const preparedFile = this.replaceTagsInstrings(file.toString());
        const content = await ejs.render(preparedFile, params, { async: true });
        await writeFile(fileName, content);
-     }catch(e){
-        this.loggerService.error(e);
-	await cleanUpCallback();
-     }
-
    }
 
-    private cleanUpFiles(templateId: string):Promise<void>{
+    private async cleanUpFiles(templateId: string):Promise<void>{
     const removeDir = `rm -rf /tmp/${templateId}`
     this.loggerService.info('remove dir');
     await promisedExec(removeDir);

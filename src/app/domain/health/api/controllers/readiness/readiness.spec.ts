@@ -15,11 +15,6 @@ class TypeOrmHealthIndicatorFake {
   public async pingCheck(): Promise<void> {}
 }
 
-jest.mock('typeorm-transactional-cls-hooked', () => ({
-  Transactional: () => (): void => {},
-  BaseRepository: class {},
-}));
-
 describe('HealthReadinessController', () => {
   let controller: HealthReadinessController;
   let healthCheckService: HealthCheckService;

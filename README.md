@@ -24,6 +24,20 @@
 
 ## Description
 
+```
+hello <%= user.name %>
+
+<% if (user.age > 18){ %>
+   Hello adult user!
+<% } %>
+
+<%= user.name %>  
+
+<% users.forEach(function(user){ %>
+   <%= user.name %>  
+<% }); %>
+```
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
