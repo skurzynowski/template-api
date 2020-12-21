@@ -32,7 +32,7 @@ describe('CatsController', () => {
     });
 
     it('more marks', async () => {
-	const testString = `&lt;% 2 &gt; 5 %&gt;`;
+	const testString = `&lt;% 2 &gt; 7 %&gt;`;
 	const result = `<% 2 > 5 %>`;
 
 	expect(transformService.replaceTagsInstrings(testString)).toBe(result);
